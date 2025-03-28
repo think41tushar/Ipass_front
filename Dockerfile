@@ -7,15 +7,17 @@ WORKDIR /app
 # Copy package.json and package-lock.json
 COPY package*.json ./
 
-# Install frontend dependencies
+# Install dependencies
 RUN npm install
 
-# Copy the frontend code
+# Copy the entire project
 COPY . .
 
-# Expose the port that your app runs on (adjust if necessary)
+# Build the application
+RUN npm run build
+
+# Expose the port
 EXPOSE 3000
 
-# Command to run the development server
-CMD ["npm", "run", "dev"]
-
+# Command to start the production server
+CMD ["npm", "run", "start"]
