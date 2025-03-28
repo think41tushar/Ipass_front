@@ -103,9 +103,11 @@ const handleHubspotAuth = async () => {
 };
 
 const IntegrationComponent: React.FC<IntegrationComponentProps> = ({
-  tenantId = "default",
+  // tenantId = "default",
   initialIntegrations = {},
 }) => {
+  const params = useParams();
+  const tenantId = params?.tenant_id || "default";
   const [integrations, setIntegrations] = useState<
     Record<"google" | "github" | "slack" | "hubspot", boolean>
   >({
